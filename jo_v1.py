@@ -7,14 +7,14 @@ pygame.init()
 
 # define the window dimensions
 window_length = 400
-window_height = 300
+window_height = 400
 wall_color = (226,46,46)
 player_color = (157,207,199)
 player_s = 50
 player_x = window_length // 2
 player_y = window_height - player_s
 clock = pygame.time.Clock()
-block_rate = 5
+block_rate = 10
 limit_left  = player_s
 limit_right = window_length-2*player_s
 frame_number = 0
