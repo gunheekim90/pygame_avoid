@@ -14,11 +14,11 @@ player_s = 50
 player_x = window_length // 2
 player_y = window_height - player_s
 clock = pygame.time.Clock()
-block_rate = 10
+block_rate = 5
 limit_left  = player_s
 limit_right = window_length-2*player_s
 frame_number = 0
-enemy_positions = numpy.arange(start=limit_left, stop=limit_right, step=player_s)
+enemy_positions = numpy.arange(start=limit_left, stop=limit_right+player_s, step=player_s)
 enemy_x = numpy.random.choice(a=enemy_positions)
 enemy_y = 0
 
