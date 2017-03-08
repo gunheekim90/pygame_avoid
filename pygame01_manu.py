@@ -22,7 +22,7 @@ block_rate = 10
 limit_left  = player_s
 limit_right = window_length - player_s*2
 frame_number = 0
-enemy_positions = numpy.arange(start=limit_left, stop=limit_right, step=player_s)
+enemy_positions = numpy.arange(start=50, stop=250, step=player_s)
 enemy_x = numpy.random.choice(a=enemy_positions)
 enemy_y = 0
 is_blue = True
@@ -50,9 +50,9 @@ while not done:
 	#this is for manually user move 
 	pressed = pygame.key.get_pressed()
 	if pressed[pygame.K_LEFT]: 
-		x -= player_s if x > limit_left else x
+		x -= player_s if x >= limit_left else x
 	if pressed[pygame.K_RIGHT]: 
-		x += player_s if x < limit_right else x
+		x += player_s if x <= limit_right else x
 
 	print("Frame Number (Score): {frame_number}".format(frame_number=frame_number))
 	# each turn the enemy block goes down one space
@@ -61,6 +61,7 @@ while not done:
 	else:
 		enemy_y = 0
 		enemy_x = numpy.random.choice(a=enemy_positions)
+		print("enemy_x : {enemy_x}".format(enemy_x=enemy_x))
 
 	# generate a random player move
 	player_x = move_player(random.randint(-1,1), player_x, player_s)
@@ -71,7 +72,9 @@ while not done:
 	# draw right boundary of the game screen
 	pygame.draw.rect(screen,wall_color, pygame.Rect(window_length-player_s,0,50,window_height))
 	# redraw the player block
-	pygame.draw.rect(screen,player_color, pygame.Rect(x,y,player_s,player_s))
+	if is_blue: color = (0,128,255)
+	else: color = (255,100,0)
+	pygame.draw.rect(screen,color, pygame.Rect(x,y,player_s,player_s))
 	# redraw the enemy block
 	pygame.draw.rect(screen,wall_color, pygame.Rect(enemy_x,enemy_y,player_s,player_s))
 	#increment the frame count
