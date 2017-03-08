@@ -6,7 +6,7 @@ import random
 pygame.init()
 
 # define the window dimensions
-window_length = 400
+window_length = 300
 window_height = 400
 wall_color = (226,46,46)
 player_color = (157,207,199)
